@@ -9,29 +9,29 @@
 <br>
 <h3>{{ errorMsg }}</h3>
 
-<ng-container *ngIf="revitResponse">
+<div *ngIf="revitResponse?.length > 0">
     <div>
         <div *ngFor="let function of revitResponse">
             <table>
                 <th>FunctionType</th>
                 <th>FunctionTypeName</th>
                 <tbody>
-                    <td>{{function.FunctionType}}</td>
-                    <td>{{function.FunctionTypeName}}</td>
+                    <td>{{function.functionType}}</td>
+                    <td>{{function.functionTypeName}}</td>
                 </tbody>
             </table>
-            <ng-container *ngIf="function.ChildFunctions.length > 0">
-                <div *ngFor="let item of function.ChildFunctions">
+            <div *ngIf="function.childFunctions?.length > 0">
+                <div *ngFor="let item of function.childFunctions">
                     <table>
                         <th>ChildFunctionType</th>
                         <th>ChildFunctionTypeName</th>
                         <tbody>
-                            <td>{{item.FunctionType}}</td>
-                            <td>{{item.FunctionTypeName}}</td>
+                            <td>{{item.functionType}}</td>
+                            <td>{{item.functionTypeName}}</td>
                         </tbody>
                     </table>
                 </div>
-            </ng-container>
+            </div>
         </div>
     </div>
-</ng-container>
+</div>
