@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "RevitFormulasValidator-SPA": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "RevitFormulasValidator-SPA"
+    }
+  },
+  "defaultProject": "RevitFormulasValidator-SPA",
+  "cli": {
+    "analytics": "5a697447-ab48-4ab1-9bb8-97072c965846"
+  }
 }

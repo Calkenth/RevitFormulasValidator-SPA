@@ -1,0 +1,37 @@
+<p>formula-validator works!</p>
+<br>
+<input type="text" id='formula' name='formula' #formula>
+<button (click)="validate(formula.value)">Check</button>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h3>{{ errorMsg }}</h3>
+
+<ng-container *ngIf="revitResponse">
+    <div>
+        <div *ngFor="let function of revitResponse">
+            <table>
+                <th>FunctionType</th>
+                <th>FunctionTypeName</th>
+                <tbody>
+                    <td>{{function.FunctionType}}</td>
+                    <td>{{function.FunctionTypeName}}</td>
+                </tbody>
+            </table>
+            <ng-container *ngIf="function.ChildFunctions.length > 0">
+                <div *ngFor="let item of function.ChildFunctions">
+                    <table>
+                        <th>ChildFunctionType</th>
+                        <th>ChildFunctionTypeName</th>
+                        <tbody>
+                            <td>{{item.FunctionType}}</td>
+                            <td>{{item.FunctionTypeName}}</td>
+                        </tbody>
+                    </table>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>
