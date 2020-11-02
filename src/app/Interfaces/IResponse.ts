@@ -1,5 +1,5 @@
-import { IRevitFunction } from './IRevitFunction';
 export interface IResponse {
+    succes: string;
     error: string;
-    content: IRevitFunction[];
+    content: string;
 }
