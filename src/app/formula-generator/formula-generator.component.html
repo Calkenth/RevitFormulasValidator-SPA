@@ -1,1 +1,9 @@
 <p>formula-generator works!</p>
+
+<form id="formulaGenerator" name="formulaGenerator">
+    <select (change) = "changed($event.target.value)">
+        <option selected hidden>Choose function type</option>
+        <!-- Below line will be looped through the keys and for every key, set label as value from enum pair and key as value attribute of <option> tag-->
+        <option *ngFor="let key of functionTypeEnum | enumToArray" [value]="functionTypeEnum[key]" [label]="key"></option>
+    </select>
+</form>

@@ -1,3 +1,4 @@
+import { EnumToArrayPipe } from './Extensions/enumToArray.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,14 +12,15 @@ import { FormulaGeneratorComponent } from './formula-generator/formula-generator
   declarations: [
     AppComponent,
     FormulaValidatorComponent,
-    FormulaGeneratorComponent
+    FormulaGeneratorComponent,
+    EnumToArrayPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [EnumToArrayPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
