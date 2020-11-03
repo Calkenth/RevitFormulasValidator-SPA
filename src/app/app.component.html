@@ -1,10 +1,8 @@
-<table>
-<div class="row">
-  <button routerLink="/Validator" routerLinkActive="active">Validator</button>
-</div>
-<div class="row">
-  <button routerLink="/Generator" routerLinkActive="active">Generator</button>
-</div>
-</table>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-raised-button routerLink="/Validator" routerLinkActive="active">Validator</button>
+    <button mat-raised-button routerLink="/Generator" routerLinkActive="active">Generator</button>
+  </mat-toolbar-row>
+</mat-toolbar>
 
 <router-outlet></router-outlet>
