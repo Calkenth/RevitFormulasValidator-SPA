@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./formula-validator.component.css']
 })
 export class FormulaValidatorComponent implements OnInit {
-  public revitResponse: IRevitFunction[] = [];
+  public revitFunctions: IRevitFunction[] = [];
   public errorMsg: string;
 
   constructor(private validatorService: ValidatorService) { }
@@ -24,13 +24,10 @@ export class FormulaValidatorComponent implements OnInit {
   }
 
   assignResponse(data: IResponse) {
-    console.log(data.success);
     if (data.success) {
-      this.revitResponse = JSON.parse(data.content);
-      console.log(this.revitResponse);
+      this.revitFunctions = JSON.parse(data.content);
     } else {
       this.errorMsg = data.error;
-      console.log(this.errorMsg);
     }
   }
 

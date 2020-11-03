@@ -10,13 +10,13 @@
 <h3>{{ errorMsg }}</h3>
 <h2>Functions List</h2>
 <ul>
-  <ng-template #recursiveList let-revitResponse>
-    <li *ngFor="let item of revitResponse">
-      {{item.FunctionTypeName}}
-      <ul *ngIf="item.ChildFunctions.length > 0">
-        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.ChildFunctions }"></ng-container>
+  <ng-template #recursiveList let-revitFunctions>
+    <li *ngFor="let function of revitFunctions">
+      {{function.FunctionTypeName}}
+      <ul *ngIf="function.ChildFunctions.length > 0">
+        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: function.ChildFunctions }"></ng-container>
       </ul>
     </li>
   </ng-template>
-  <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: revitResponse }"></ng-container>
+  <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: revitFunctions }"></ng-container>
 </ul>
