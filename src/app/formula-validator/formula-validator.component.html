@@ -8,30 +8,15 @@
 <br>
 <br>
 <h3>{{ errorMsg }}</h3>
-
-<div *ngIf="revitResponse?.length > 0">
-    <div>
-        <div *ngFor="let function of revitResponse">
-            <table>
-                <th>FunctionType</th>
-                <th>FunctionTypeName</th>
-                <tbody>
-                    <td>{{function.functionType}}</td>
-                    <td>{{function.functionTypeName}}</td>
-                </tbody>
-            </table>
-            <div *ngIf="function.childFunctions?.length > 0">
-                <div *ngFor="let item of function.childFunctions">
-                    <table>
-                        <th>ChildFunctionType</th>
-                        <th>ChildFunctionTypeName</th>
-                        <tbody>
-                            <td>{{item.functionType}}</td>
-                            <td>{{item.functionTypeName}}</td>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<h2>Functions List</h2>
+<ul>
+  <ng-template #recursiveList let-revitResponse>
+    <li *ngFor="let item of revitResponse">
+      {{item.FunctionTypeName}}
+      <ul *ngIf="item.ChildFunctions.length > 0">
+        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.ChildFunctions }"></ng-container>
+      </ul>
+    </li>
+  </ng-template>
+  <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: revitResponse }"></ng-container>
+</ul>

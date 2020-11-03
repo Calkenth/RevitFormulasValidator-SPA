@@ -24,9 +24,8 @@ export class FormulaValidatorComponent implements OnInit {
   }
 
   assignResponse(data: IResponse) {
-    console.log(data);
-    console.log(data.succes);
-    if (data.succes) {
+    console.log(data.success);
+    if (data.success) {
       this.revitResponse = JSON.parse(data.content);
       console.log(this.revitResponse);
     } else {

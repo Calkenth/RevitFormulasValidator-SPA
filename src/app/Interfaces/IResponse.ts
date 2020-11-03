@@ -1,5 +1,5 @@
 export interface IResponse {
-    succes: string;
+    success: string;
     error: string;
     content: string;
 }
