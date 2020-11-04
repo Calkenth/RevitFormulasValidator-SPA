@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { iif } from 'rxjs';
 import { FunctionTypeEnum } from '../Enums/FunctionTypeEnum.enum';
 
 @Component({
@@ -13,7 +12,7 @@ export class FormulaGeneratorComponent implements OnInit {
   public selectedFunction: number;
   public counter = 0;
   public formulaExists = false;
-  public numberOfArgs = 0;
+  public numberOfArgs;
   public isEditable = false;
 
   constructor() { }
@@ -57,13 +56,35 @@ export class FormulaGeneratorComponent implements OnInit {
           this.htmlValue += `,<input id="fun${this.counter}-${this.functionTypeEnum.IfFunction}_arg2" type="text">)`;
           break;
         case this.functionTypeEnum.NotFunction:
-          this.htmlValue += `NOT(<input id="fun${this.counter}-${this.functionTypeEnum.NotFunction}" type="text">)`;
-          break;
-          case this.functionTypeEnum.AndFunction:
+            this.htmlValue += `NOT(<input id="fun${this.counter}-${this.functionTypeEnum.NotFunction}" type="text">)`;
+            break;
+        case this.functionTypeEnum.AndFunction:
+            if (this.numberOfArgs === 1) {
             this.htmlValue += `AND(<input id="fun${this.counter}-${this.functionTypeEnum.AndFunction}_arg0" type="text">)`;
+          } else {
+            this.htmlValue += `AND(`;
+            for (let index = 0; index < this.numberOfArgs; index++) {
+              this.htmlValue += `<input id="fun${this.counter}-${this.functionTypeEnum.NotFunction}_arg${index}" type="text">`;
+              if (index !== this.numberOfArgs - 1) {
+                this.htmlValue += ',';
+              }
+            }
+            this.htmlValue += `)`;
+          }
             break;
         case this.functionTypeEnum.OrFunction:
+          if (this.numberOfArgs === 1) {
           this.htmlValue += `OR(<input id="fun${this.counter}-${this.functionTypeEnum.OrFunction}_arg0" type="text">)`;
+        } else {
+          this.htmlValue += `OR(`;
+          for (let index = 0; index < this.numberOfArgs; index++) {
+            this.htmlValue += `<input id="fun${this.counter}-${this.functionTypeEnum.NotFunction}_arg${index}" type="text">`;
+            if (index !== this.numberOfArgs - 1) {
+              this.htmlValue += ',';
+            }
+          }
+          this.htmlValue += `)`;
+        }
           break;
         case this.functionTypeEnum.RoundDownFunction:
           this.htmlValue += `ROUNDDOWN(<input id="fun${this.counter}-${this.functionTypeEnum.RoundDownFunction}" type="text">)`;

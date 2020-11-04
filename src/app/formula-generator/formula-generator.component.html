@@ -1,27 +1,60 @@
 <p>formula-generator works!</p>
-
-<select id="FunctionSelect" name="FunctionSelect" [(ngModel)]="selectedFunction" (change)="checkArgsNumber(this.selectedFunction)">
-    <option hidden value='-1'>Choose function type</option>
-    <!-- Below line will be looped through the keys and for every key, set label as value from enum pair and key as value attribute of <option> tag-->
-    <option *ngFor="let key of functionTypeEnum | enumToArray" [value]="functionTypeEnum[key]" [label]="key"></option>
-</select>
-<label>Number of arguments</label>
-<input type="number" id="NumberOfArgs" min="0" [value]="numberOfArgs" [disabled]="!isEditable">
-<button id="AddFunctionBtn" (click)="addFunction()">Add</button>
-
 <mat-form-field>
-    <mat-label>Number of arguments</mat-label>
-    <input matInput appearance="fill" id="NumberOfArgs" min="0" [value]="numberOfArgs" [disabled]="!isEditable">
+    <mat-label>Choose function type</mat-label>
+    <mat-select id="FunctionSelect" name="FunctionSelect" [(ngModel)]="selectedFunction"
+        (selectionChange)="checkArgsNumber(this.selectedFunction)">
+        <!-- Below line will be looped through the keys and for every key, set label as value from enum pair and key as value attribute of <option> tag-->
+        <mat-option *ngFor="let key of functionTypeEnum | enumToArray" [value]="functionTypeEnum[key]">{{key}}
+        </mat-option>
+    </mat-select>
 </mat-form-field>
 
+<mat-form-field class="args-container">
+    <mat-label>Number of args</mat-label>
+    <input matInput id="NumberOfArgs" min="0" [(ngModel)]="numberOfArgs" [disabled]="!isEditable">
+</mat-form-field>
+<button mat-stroked-button id="AddFunctionBtn" (click)="addFunction()">Add</button>
+
+<div class="functionBoxGeneral">
+    <mat-grid-list class="ifFunctionBox" cols="2" rowHeight="300px">
+        <mat-grid-tile rowspan="3">IF</mat-grid-tile>
+        <mat-grid-tile>arg1</mat-grid-tile>
+        <mat-grid-tile>arg2</mat-grid-tile>
+        <mat-grid-tile>
+            <div class="childFunctionBoxGeneral">
+            <mat-grid-list class="andFunctionBox" cols="2" rowHeight="150">
+                <mat-grid-tile rowspan="2">AND</mat-grid-tile>
+                <mat-grid-tile>arg1</mat-grid-tile>
+                <mat-grid-tile>arg2</mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
 <div *ngIf="formulaExists">
-    <form onsubmit="submitFormula()">
+    <form (submit)="submitFormula()">
         <table>
             <div class="row">
                 <div class="formulaGenerator" id="formulaGenerator" [innerHtml]="htmlValue | safe: 'html'"></div>
             </div>
         </table>
 
-        <button class="button" type="submit">Generate</button>
+        <button mat-stroked-button id="submitBtn" type="submit">Generate</button>
     </form>
 </div>
+
+<!-- <div class="table mat-elevation-z8">
+    <tr>
+        <td></td>
+        <td>Arg1</td>
+    </tr>
+    <tr>
+        <td>IF</td>
+        <td>Arg2</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Arg3</td>
+    </tr>
+</div> -->

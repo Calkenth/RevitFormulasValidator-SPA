@@ -1,14 +1,35 @@
 .formulaGenerator {
   border: 5px solid gray;
 }
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
+.args-container {
+  width: 80px;
+}
+.table {
+  width: fit-content;
+}
+.functionBoxGeneral {
   width: 100%;
 }
-.example-full-width {
+.childFunctionBoxGeneral {
   width: 100%;
 }
-.mat-form-field.mat-form-field-label {
-  color: green;
+.ifFunctionBox {
+  border: solid 2px #000;
+  background: darkkhaki;
+}
+.simpleFunctionBox {
+  border: solid 2px #000;
+  background: palegreen;
+}
+.andFunctionBox {
+  border: solid 2px #000;
+  background: darkcyan;
+}
+.orFunctionBox {
+  border: solid 2px #000;
+  background: darkred;
+}
+.roundFunctionBox {
+  border: solid 2px #000;
+  background: lightblue;
 }
